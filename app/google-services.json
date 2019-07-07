@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "476291600854",
+    "firebase_url": "https://inventarioskydata.firebaseio.com",
+    "project_id": "inventarioskydata",
+    "storage_bucket": "inventarioskydata.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476291600854:android:4f7a63aef2e5c452",
+        "android_client_info": {
+          "package_name": "com.example.inventarioskydata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476291600854-kp43rsigurtrlbph1agunhhtpo811i2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.inventarioskydata",
+            "certificate_hash": "e07d4eb75bce791e61cb9b54b85d520d2c440667"
+          }
+        },
+        {
+          "client_id": "476291600854-leuu9if0vtda8eaj1bqc6lrttth6m2dd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAeb9fafB0B7RwoYlhtpPAE8Efw0F3nus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476291600854-leuu9if0vtda8eaj1bqc6lrttth6m2dd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

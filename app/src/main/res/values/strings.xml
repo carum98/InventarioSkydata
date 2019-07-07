@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">InventarioSkydata</string>
+    <string name="nombre">Nombre</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="campo">Campo</string>
+    <string name="id">id</string>
+    <string name="agregar">Agregar</string>
+</resources>
