@@ -45,28 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        nomI = (EditText) findViewById(R.id.nombre);
-        cantI = (EditText) findViewById(R.id.cantidad);
-        campoI = (EditText) findViewById(R.id.campo);
-        ID = (TextView) findViewById(R.id.id);
-
-//        listView = (ListView) findViewById(R.id.ListView);
-
-        inicializarFirebase();
-//        listaInventario();
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Selected = (Inventario) adapterView.getItemAtPosition(position);
-//
-//                nomI.setText(Selected.getNombre());
-//                cantI.setText(Integer.toString(Selected.getCantidad()));
-//                campoI.setText(Selected.getCampo());
-//                ID.setText(Selected.getId());
-//            }
-//        });
     }
 
     public void listado(View view) {
@@ -74,27 +52,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(listado);
     }
 
-//    public void listaInventario() {
-//        databaseReference.child("Inventario").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                listInventario.clear();
-//
-//                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
-//                    Inventario i = objSnaptshot.getValue(Inventario.class);
-//                    listInventario.add(i);
-//
-//                    arrayAdapter = new ArrayAdapter<Inventario>(MainActivity.this, android.R.layout.simple_list_item_1, listInventario);
-//                    listView.setAdapter(arrayAdapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    public void agregar(View view) {
+        Intent agregar = new Intent(this, Agregar_Activity.class);
+        startActivity(agregar);
+    }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(this);
@@ -102,60 +63,5 @@ public class MainActivity extends AppCompatActivity {
 //        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference();
     }
-
-    public void CrearInventario(View view) {
-        String nombre = nomI.getText().toString();
-        String cantidad = cantI.getText().toString();
-        String campo = campoI.getText().toString();
-        //String id = ID.getText().toString();
-
-        if (nombre.equals("") || cantidad.equals("") || campo.equals("")){
-            validacion();
-        }else {
-            Inventario I = new Inventario();
-            I.setNombre(nombre);
-            I.setCantidad(Integer.parseInt(cantidad));
-            I.setCampo(campo);
-            I.setId(UUID.randomUUID().toString());
-            databaseReference.child("Inventario").child(I.getId()).setValue(I);
-            Toast.makeText(this, "Agregado al inventario", Toast.LENGTH_SHORT).show();
-            limpiar();
-        }
-    }
-
-    public void limpiar() {
-        nomI.setText("");
-        cantI.setText("");
-        campoI.setText("");
-    }
-
-    public void validacion() {
-        String nombre = nomI.getText().toString();
-        String cantidad = cantI.getText().toString();
-        String campo = campoI.getText().toString();
-
-        if (nombre.equals("")) {
-            nomI.setError("Ingrese el nombre");
-        } else if (cantidad.equals("")) {
-            cantI.setError("Ingrese cantidad");
-        } else if (campo.equals("")) {
-            campoI.setError("Ingrese el campo");
-        }
-
-    }
-
-//    public void salidaInven(){
-//        String nombre = nomI.getText().toString().trim();
-//        String cantidad = cantI.getText().toString().trim();
-//        String campo = campoI.getText().toString().trim();
-//
-//
-//        Inventario I = new Inventario();
-//        I.setNombre(nombre);
-//        I.setCantidad(Integer.parseInt(cantidad));
-//        I.setCampo(campo);
-//
-//        databaseReference.child("Inventario").child()
-//    }
 
 }

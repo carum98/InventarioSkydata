@@ -5,4 +5,5 @@
     <string name="campo">Campo</string>
     <string name="id">id</string>
     <string name="agregar">Agregar</string>
+    <string name="title_activity_show_">Show_Activity</string>
 </resources>
