@@ -8,4 +8,5 @@
     <string name="title_activity_show_">Show_Activity</string>
     <string name="salida">Salida</string>
     <string name="entrada">Entrada</string>
+    <string name="agregar_articulo_a_inventario">Agregar articulo a inventario</string>
 </resources>

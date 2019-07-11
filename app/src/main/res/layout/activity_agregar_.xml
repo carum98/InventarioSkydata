@@ -7,6 +7,15 @@
     tools:context=".Agregar_Activity"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="@string/agregar_articulo_a_inventario"
+        android:textColor="#3F51B5"
+        android:textSize="24sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +72,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/btn"
+        android:onClick="CrearInventario"
         android:text="@string/agregar"
-        android:onClick="CrearInventario"/>
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

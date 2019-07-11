@@ -2,11 +2,14 @@ package com.example.inventarioskydata;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,29 +25,29 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.Result;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-//    ListView listView;
-    EditText nomI, cantI, campoI;
-    TextView ID;
+public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    private List<Inventario> listInventario = new ArrayList<Inventario>();
-    ArrayAdapter<Inventario> arrayAdapter;
-
-    Inventario Selected;
+    private ZXingScannerView mScannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.mipmap.ic_launcher_round);
+        actionBar.setDisplayShowHomeEnabled(true);
     }
 
     public void listado(View view) {
@@ -64,4 +67,28 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
     }
 
+    public void btnEscanear(View view){
+        mScannerView = new ZXingScannerView(this);
+        setContentView(mScannerView);
+        mScannerView.setResultHandler(this);
+        mScannerView.startCamera();
+    }
+
+
+    @Override
+    public void handleResult(Result result) {
+        Intent intent = new Intent(MainActivity.this, Listado_Activity.class);
+        String cogigo = result.getText();
+        intent.putExtra("codigo", cogigo);
+        startActivity(intent);
+
+//        Log.v("HandleResult",result.getText());
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Resultado del SCAN");
+//        builder.setMessage(result.getText());
+//        AlertDialog alertDialog = builder.create();
+//        alertDialog.show();
+
+//        mScannerView.resumeCameraPreview(this);
+    }
 }

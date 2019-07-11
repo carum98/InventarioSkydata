@@ -1,6 +1,7 @@
 package com.example.inventarioskydata;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.inventarioskydata.model.Inventario;
 import com.google.firebase.FirebaseApp;
@@ -44,8 +46,19 @@ public class Listado_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setIcon(R.mipmap.ic_launcher_round);
+        actionBar.setDisplayShowHomeEnabled(true);
         inicializarFirebase();
-        listaInventario();
+
+        String id = getIntent().getStringExtra("codigo");
+
+        if (id != null){
+            listaInventario(id);
+        }else {
+            listaInventario();
+        }
+
 
         nomI = (EditText) findViewById(R.id.nombre);
         cantI = (EditText) findViewById(R.id.cantidad);
@@ -66,20 +79,18 @@ public class Listado_Activity extends AppCompatActivity {
                     intent.putExtra("id", Selected.getId());
 
                     startActivity(intent);
-//                nomI.setText(Selected.getNombre());
-//                cantI.setText(Integer.toString(Selected.getCantidad()));
-//                campoI.setText(Selected.getCampo());
-//                textV.setText(Selected.getId());
             }
         });
+
+
     }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
-//        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference();
     }
+
     public void listaInventario() {
         listView = (ListView) findViewById(R.id.ListView);
 
@@ -104,31 +115,34 @@ public class Listado_Activity extends AppCompatActivity {
         });
     }
 
-//    public void listaInventario(){
-//
-//        listView = (ListView) findViewById(R.id.ListView);
-//
-//        DatabaseReference ref = databaseReference.child("Inventario");
-//        Query idQuery = ref.orderByChild("id").equalTo("0c197654-b49e-4d17-9ca0-26dc458aaa9a");
-//
-//        idQuery.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-//                    Inventario i = singleSnapshot.getValue(Inventario.class);
-//                    listInventario.add(i);
-//
-//                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-//                    listView.setAdapter(arrayAdapter);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    public void listaInventario(String id){
+
+        listView = (ListView) findViewById(R.id.ListView);
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+
+        String codigo = id;
+
+        DatabaseReference ref = databaseReference.child("Inventario");
+        Query idQuery = ref.orderByChild("id").equalTo(codigo);
+
+        idQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+                    Inventario i = singleSnapshot.getValue(Inventario.class);
+                    listInventario.add(i);
+
+                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                    listView.setAdapter(arrayAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 //    public void actualizar(View view){
 //        nomI = (EditText) findViewById(R.id.nombre);

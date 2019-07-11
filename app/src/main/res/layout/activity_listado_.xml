@@ -89,6 +89,15 @@
         <!--android:text="Actualizar"-->
         <!--android:onClick="actualizar"/>-->
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Listado del Inventario"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/ListView"
         android:layout_width="match_parent"
