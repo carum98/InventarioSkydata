@@ -19,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
@@ -51,7 +52,9 @@ public class Listado_Activity extends AppCompatActivity {
         campoI = (EditText) findViewById(R.id.campo);
         textV = (TextView) findViewById(R.id.id);
 
-        final Intent intent = new Intent (this,Show_Activity.class);
+//        final Intent intent = new Intent (this,Show_Activity.class);
+
+        final Intent intent = new Intent (this,Inventario_Activity.class);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,6 +103,32 @@ public class Listado_Activity extends AppCompatActivity {
             }
         });
     }
+
+//    public void listaInventario(){
+//
+//        listView = (ListView) findViewById(R.id.ListView);
+//
+//        DatabaseReference ref = databaseReference.child("Inventario");
+//        Query idQuery = ref.orderByChild("id").equalTo("0c197654-b49e-4d17-9ca0-26dc458aaa9a");
+//
+//        idQuery.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
+//                    Inventario i = singleSnapshot.getValue(Inventario.class);
+//                    listInventario.add(i);
+//
+//                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+//                    listView.setAdapter(arrayAdapter);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 //    public void actualizar(View view){
 //        nomI = (EditText) findViewById(R.id.nombre);

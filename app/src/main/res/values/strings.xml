@@ -6,4 +6,6 @@
     <string name="id">id</string>
     <string name="agregar">Agregar</string>
     <string name="title_activity_show_">Show_Activity</string>
+    <string name="salida">Salida</string>
+    <string name="entrada">Entrada</string>
 </resources>
