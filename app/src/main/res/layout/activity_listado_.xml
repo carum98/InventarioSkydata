@@ -7,87 +7,6 @@
     tools:context=".Listado_Activity"
     android:orientation="vertical">
 
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="@string/nombre">-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/nombre"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:accessibilityHeading="true"-->
-            <!--android:ems="10"-->
-            <!--android:hint="@string/nombre"-->
-            <!--android:importantForAutofill="no"-->
-            <!--android:inputType="text"-->
-            <!--android:paddingTop="15dp"-->
-            <!--tools:ignore="LabelFor"-->
-            <!--tools:targetApi="o" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="@string/cantidad">-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/cantidad"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:ems="10"-->
-            <!--android:inputType="number"-->
-            <!--android:paddingTop="15dp"-->
-            <!--android:importantForAutofill="no"-->
-            <!--tools:targetApi="o"-->
-            <!--tools:ignore="LabelFor" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:hint="@string/campo">-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/campo"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:ems="10"-->
-            <!--android:inputType="text"-->
-            <!--android:paddingTop="15dp"-->
-            <!--android:importantForAutofill="no"-->
-            <!--tools:targetApi="o"-->
-            <!--tools:ignore="LabelFor" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--<com.google.android.material.textfield.TextInputLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:hint="@string/id">-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/id"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:ems="10"-->
-    <!--android:inputType="number"-->
-    <!--android:paddingTop="15dp"-->
-    <!--android:importantForAutofill="no"-->
-    <!--tools:targetApi="o"-->
-    <!--tools:ignore="LabelFor" />-->
-    <!--</com.google.android.material.textfield.TextInputLayout>-->
-
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/id"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Actualizar"-->
-        <!--android:onClick="actualizar"/>-->
 
     <TextView
         android:id="@+id/textView"
@@ -97,6 +16,58 @@
         android:text="Listado del Inventario"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnArA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Armario A" />
+
+        <Button
+
+            android:id="@+id/btnArB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Armario B" />
+
+        <Button
+            android:id="@+id/btnArC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Armario C" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/rbA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Armario A" />
+
+        <RadioButton
+            android:id="@+id/rbB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Armario B" />
+
+        <RadioButton
+            android:id="@+id/rbC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Armario C" />
+    </RadioGroup>
 
     <ListView
         android:id="@+id/ListView"

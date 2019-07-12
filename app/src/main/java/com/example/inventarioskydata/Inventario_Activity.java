@@ -19,7 +19,7 @@ public class Inventario_Activity extends AppCompatActivity {
 
     EditText canES;
 
-    String nombre, campo, id;
+    String nombre, campo, id, estante, armario;
     int cantidad;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -32,9 +32,10 @@ public class Inventario_Activity extends AppCompatActivity {
         canES = (EditText)findViewById(R.id.cantidad);
 
         nombre = getIntent().getStringExtra("nombre");
-        campo = getIntent().getStringExtra("campo");
         id = getIntent().getStringExtra("id");
         cantidad = getIntent().getIntExtra("cantidad",0);
+        estante = getIntent().getStringExtra("estante");
+        armario = getIntent().getStringExtra("armario");
 
         inicializarFirebase();
 
@@ -51,9 +52,10 @@ public class Inventario_Activity extends AppCompatActivity {
         I.setCantidad(Resultado);
         I.setNombre(nombre);
         I.setId(id);
-        I.setCampo(campo);
+        I.setEstante(estante);
+        I.setArmario(armario);
 
-        databaseReference.child("Inventario").child(id).setValue(I);
+        databaseReference.child("Inventario").child(I.getArmario()).child(I.getEstante()).child(I.getId()).setValue(I);
         Toast.makeText(this, "Salida de inventario completada", Toast.LENGTH_SHORT).show();
     }
 

@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:accessibilityHeading="true"
             android:ems="10"
-            android:hint="@string/nombre"
             android:importantForAutofill="no"
             android:inputType="text"
             android:paddingTop="15dp"
@@ -52,22 +51,32 @@
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/campo">
+    <!--<com.google.android.material.textfield.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="@string/campo">-->
 
-        <EditText
-            android:id="@+id/campo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingTop="15dp"
-            android:importantForAutofill="no"
-            tools:targetApi="o"
-            tools:ignore="LabelFor" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <!--<EditText-->
+            <!--android:id="@+id/campo"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:ems="10"-->
+            <!--android:inputType="text"-->
+            <!--android:paddingTop="15dp"-->
+            <!--android:importantForAutofill="no"-->
+            <!--tools:targetApi="o"-->
+            <!--tools:ignore="LabelFor" />-->
+    <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <Spinner
+        android:id="@+id/Armario"
+        android:layout_width="match_parent"
+        android:layout_height="50sp" />
+
+    <Spinner
+        android:id="@+id/Estante"
+        android:layout_width="match_parent"
+        android:layout_height="50sp" />
 
     <Button
         android:layout_width="wrap_content"

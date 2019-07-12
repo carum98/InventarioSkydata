@@ -16,10 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Show_Activity extends AppCompatActivity {
 
-    EditText nomI, cantI, campoI;
+    EditText nomI, cantI;
     TextView textV;
 
-    String nombre, campo, id;
+    String nombre, id, Armario, Estante;
     int cantidad;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -32,17 +32,14 @@ public class Show_Activity extends AppCompatActivity {
 
         nomI = (EditText) findViewById(R.id.nombre);
         cantI = (EditText) findViewById(R.id.cantidad);
-        campoI = (EditText) findViewById(R.id.campo);
         textV = (TextView) findViewById(R.id.id);
 
         nombre = getIntent().getStringExtra("nombre");
-        campo = getIntent().getStringExtra("campo");
         id = getIntent().getStringExtra("id");
         cantidad = getIntent().getIntExtra("cantidad",0);
 
         nomI.setText(nombre);
         cantI.setText(Integer.toString(cantidad));
-        campoI.setText(campo);
         textV.setText(id);
     }
 
@@ -55,21 +52,18 @@ public class Show_Activity extends AppCompatActivity {
     public void actualizar(View view){
         nomI = (EditText) findViewById(R.id.nombre);
         cantI = (EditText) findViewById(R.id.cantidad);
-        campoI = (EditText) findViewById(R.id.campo);
         textV = (TextView) findViewById(R.id.id);
 
         String nombre = nomI.getText().toString().trim();
         String cantidad = cantI.getText().toString().trim();
-        String campo = campoI.getText().toString().trim();
         String id = textV.getText().toString().trim();
 
         Inventario I = new Inventario();
         I.setId(id);
         I.setNombre(nombre);
         I.setCantidad(Integer.parseInt(cantidad));
-        I.setCampo(campo);
 
-        databaseReference.child("Inventario").child(I.getId()).setValue(I);
+        databaseReference.child("Inventario").child("ArmarioA").child("EsA").child(I.getId()).setValue(I);
         Toast.makeText(this, "Inventario actualizado", Toast.LENGTH_SHORT).show();
         limpiar();
     }
@@ -77,6 +71,5 @@ public class Show_Activity extends AppCompatActivity {
     public void limpiar() {
         nomI.setText("");
         cantI.setText("");
-        campoI.setText("");
     }
 }

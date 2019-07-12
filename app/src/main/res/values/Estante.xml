@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="estantes">
+        <item>Estante A</item>
+        <item>Estante B</item>
+        <item>Estante C</item>
+        <item>Estante D</item>
+        <item>Estante E</item>
+        <item>Estante F</item>
+        <item>Estante G</item>
+        <item>Estante H</item>
+        <item>Estante I</item>
+    </string-array>
+</resources>

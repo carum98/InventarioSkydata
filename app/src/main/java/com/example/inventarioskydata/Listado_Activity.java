@@ -75,9 +75,9 @@ public class Listado_Activity extends AppCompatActivity {
                 Selected = (Inventario) adapterView.getItemAtPosition(position);
                     intent.putExtra("nombre", Selected.getNombre());
                     intent.putExtra("cantidad", Selected.getCantidad());
-                    intent.putExtra("campo", Selected.getCampo());
                     intent.putExtra("id", Selected.getId());
-
+                    intent.putExtra("armario",Selected.getArmario());
+                    intent.putExtra("estante", Selected.getEstante());
                     startActivity(intent);
             }
         });
@@ -94,10 +94,47 @@ public class Listado_Activity extends AppCompatActivity {
     public void listaInventario() {
         listView = (ListView) findViewById(R.id.ListView);
 
-        databaseReference.child("Inventario").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Inventario").child("ArmarioA").child("Estante A").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                listInventario.clear();
+
+                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
+                    Inventario i = objSnaptshot.getValue(Inventario.class);
+                    listInventario.add(i);
+
+                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                    listView.setAdapter(arrayAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Inventario").child("ArmarioB").child("Estante E").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
+                    Inventario i = objSnaptshot.getValue(Inventario.class);
+                    listInventario.add(i);
+
+                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                    listView.setAdapter(arrayAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Inventario").child("ArmarioC").child("Estante I").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
                     Inventario i = objSnaptshot.getValue(Inventario.class);
@@ -115,6 +152,10 @@ public class Listado_Activity extends AppCompatActivity {
         });
     }
 
+    public void Armario(){
+
+    }
+
     public void listaInventario(String id){
 
         listView = (ListView) findViewById(R.id.ListView);
@@ -122,10 +163,10 @@ public class Listado_Activity extends AppCompatActivity {
 
         String codigo = id;
 
-        DatabaseReference ref = databaseReference.child("Inventario");
-        Query idQuery = ref.orderByChild("id").equalTo(codigo);
+        DatabaseReference ref = databaseReference.child("Inventario").child("ArmarioA").child(codigo);
+//        Query idQuery = ref.orderByChild("id").equalTo(codigo);
 
-        idQuery.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
@@ -143,24 +184,4 @@ public class Listado_Activity extends AppCompatActivity {
             }
         });
     }
-
-//    public void actualizar(View view){
-//        nomI = (EditText) findViewById(R.id.nombre);
-//        cantI = (EditText) findViewById(R.id.cantidad);
-//        campoI = (EditText) findViewById(R.id.campo);
-//        textV = (TextView) findViewById(R.id.id);
-//
-//        String nombre = nomI.getText().toString().trim();
-//        String cantidad = cantI.getText().toString().trim();
-//        String campo = campoI.getText().toString().trim();
-//        String id = textV.getText().toString().trim();
-//
-//        Inventario I = new Inventario();
-//        I.setId(id);
-//        I.setNombre(nombre);
-//        I.setCantidad(Integer.parseInt(cantidad));
-//        I.setCampo(campo);
-//
-//        databaseReference.child("Inventario").child(I.getId()).setValue(I);
-//    }
 }

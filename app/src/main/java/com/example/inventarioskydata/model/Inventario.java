@@ -4,7 +4,24 @@ public class Inventario {
     private String id;
     private String nombre;
     private int cantidad;
-    private String campo;
+    private String armario;
+    private String estante;
+
+    public String getArmario() {
+        return armario;
+    }
+
+    public void setArmario(String armario) {
+        this.armario = armario;
+    }
+
+    public String getEstante() {
+        return estante;
+    }
+
+    public void setEstante(String estante) {
+        this.estante = estante;
+    }
 
     public Inventario() {
 
@@ -32,14 +49,6 @@ public class Inventario {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public String getCampo() {
-        return campo;
-    }
-
-    public void setCampo(String campo) {
-        this.campo = campo;
     }
 
     @Override
