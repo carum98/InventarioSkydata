@@ -15,6 +15,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class Agregar_Activity extends AppCompatActivity {
@@ -65,12 +66,13 @@ public class Agregar_Activity extends AppCompatActivity {
         if (nombre.equals("") || cantidad.equals("")){
             validacion();
         }else {
+            String id = armario.substring(armario.length()-1)+estante.substring(armario.length())+UUID.randomUUID().toString().substring(0,8);
             Inventario I = new Inventario();
             I.setNombre(nombre);
             I.setCantidad(Integer.parseInt(cantidad));
             I.setArmario(armario);
             I.setEstante(estante);
-            I.setId(UUID.randomUUID().toString());
+            I.setId(id);
 
             databaseReference.child("Inventario").child(I.getArmario()).child(I.getEstante()).child(I.getId()).setValue(I);
             Toast.makeText(this, "Agregado al inventario", Toast.LENGTH_SHORT).show();

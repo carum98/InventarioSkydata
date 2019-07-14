@@ -53,6 +53,6 @@ public class Inventario {
 
     @Override
     public String toString() {
-        return nombre + " cantidad " +cantidad;
+        return nombre + " cantidad " +cantidad + " " +estante + " " + armario;
     }
 }

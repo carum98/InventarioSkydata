@@ -17,57 +17,57 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal">-->
 
-        <Button
-            android:id="@+id/btnArA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Armario A" />
+        <!--<Button-->
+            <!--android:id="@+id/btnArA"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Armario A" />-->
 
-        <Button
+        <!--<Button-->
 
-            android:id="@+id/btnArB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Armario B" />
+            <!--android:id="@+id/btnArB"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Armario B" />-->
 
-        <Button
-            android:id="@+id/btnArC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Armario C" />
-    </LinearLayout>
+        <!--<Button-->
+            <!--android:id="@+id/btnArC"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Armario C" />-->
+    <!--</LinearLayout>-->
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <!--<RadioGroup-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" >-->
 
-        <RadioButton
-            android:id="@+id/rbA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Armario A" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rbA"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Armario A" />-->
 
-        <RadioButton
-            android:id="@+id/rbB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Armario B" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rbB"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Armario B" />-->
 
-        <RadioButton
-            android:id="@+id/rbC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Armario C" />
-    </RadioGroup>
+        <!--<RadioButton-->
+            <!--android:id="@+id/rbC"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Armario C" />-->
+    <!--</RadioGroup>-->
 
     <ListView
         android:id="@+id/ListView"

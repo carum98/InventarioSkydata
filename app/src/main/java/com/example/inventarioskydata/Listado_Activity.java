@@ -36,8 +36,14 @@ public class Listado_Activity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    String [] estantes = {"Estante A", "Estante B", "Estante C", "Estante E", "Estante H", "Estante I"};
+    String [] Armario = {"ArmarioA", "ArmarioB", "ArmarioC"};
+
     private List<Inventario> listInventario = new ArrayList<Inventario>();
+    private List<String> listCodigos = new ArrayList<String>();
+
     ArrayAdapter<Inventario> arrayAdapter;
+    ArrayAdapter<String> arrayCodgios;
 
     EditText nomI, cantI, campoI;
     TextView textV;
@@ -94,88 +100,80 @@ public class Listado_Activity extends AppCompatActivity {
     public void listaInventario() {
         listView = (ListView) findViewById(R.id.ListView);
 
-        databaseReference.child("Inventario").child("ArmarioA").child("Estante A").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        for (int i=0; i< Armario.length; i++){
+            for (int j=0; j< estantes.length; j++)
+                databaseReference.child("Inventario").child(Armario[i]).child(estantes[j]).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
+                            Inventario i = objSnaptshot.getValue(Inventario.class);
+                            if (i!=null) {
+                                listInventario.add(i);
+                            }
+                            arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                            listView.setAdapter(arrayAdapter);
+                        }
+                    }
 
-                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
-                    Inventario i = objSnaptshot.getValue(Inventario.class);
-                    listInventario.add(i);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-                    listView.setAdapter(arrayAdapter);
-                }
+                    }
+                });
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseReference.child("Inventario").child("ArmarioB").child("Estante E").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
-                    Inventario i = objSnaptshot.getValue(Inventario.class);
-                    listInventario.add(i);
-
-                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-                    listView.setAdapter(arrayAdapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        databaseReference.child("Inventario").child("ArmarioC").child("Estante I").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
-                    Inventario i = objSnaptshot.getValue(Inventario.class);
-                    listInventario.add(i);
-
-                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-                    listView.setAdapter(arrayAdapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public void Armario(){
-
-    }
+        }
 
     public void listaInventario(String id){
-
         listView = (ListView) findViewById(R.id.ListView);
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
-
         String codigo = id;
 
-        DatabaseReference ref = databaseReference.child("Inventario").child("ArmarioA").child(codigo);
-//        Query idQuery = ref.orderByChild("id").equalTo(codigo);
+        if (codigo.equals("ArmarioA") || codigo.equals("ArmarioB") || codigo.equals("ArmarioC")){
+            armarios(codigo);
+        }else if (codigo.length() == 9){
+            estantes(codigo);
+        }else {
+            String armarioId = "Armario" + codigo.charAt(0);
+            String estanteId = "Estante " + codigo.charAt(1);
 
+            DatabaseReference ref = databaseReference.child("Inventario").child(armarioId).child(estanteId);
+            Query idQuery = ref.orderByChild("id").equalTo(codigo);
+
+            idQuery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                        Inventario i = singleSnapshot.getValue(Inventario.class);
+                        listInventario.add(i);
+
+                        arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                        listView.setAdapter(arrayAdapter);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
+
+    public void listaChild(){
+        listView = (ListView) findViewById(R.id.ListView);
+        DatabaseReference ref = databaseReference.child("Inventario");
+//        Query query = ref.equalTo("ArmarioA");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()){
-                    Inventario i = singleSnapshot.getValue(Inventario.class);
-                    listInventario.add(i);
+                for (DataSnapshot objSanpshot : dataSnapshot.getChildren()){
+                    String codigos = objSanpshot.getKey();
+                    listCodigos.add(codigos);
 
-                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-                    listView.setAdapter(arrayAdapter);
+//                    arrayCodgios = new ArrayAdapter<String>(Listado_Activity.this, android.R.layout.simple_list_item_1, listCodigos);
+//                    listView.setAdapter(arrayCodgios);
                 }
+                Toast.makeText(Listado_Activity.this, listCodigos.get(0), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -183,5 +181,59 @@ public class Listado_Activity extends AppCompatActivity {
 
             }
         });
+
     }
+
+    public void armarios(String Armario){
+        Toast.makeText(this, Armario, Toast.LENGTH_SHORT).show();
+
+        for (int i=0; i<estantes.length; i++){
+
+            databaseReference.child("Inventario").child(Armario).child(estantes[i]).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
+                        Inventario i = objSnaptshot.getValue(Inventario.class);
+                        listInventario.add(i);
+                        arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                        listView.setAdapter(arrayAdapter);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
+
+    private void estantes(String Estante) {
+
+        Toast.makeText(this, Estante, Toast.LENGTH_SHORT).show();
+
+        for (int i=0; i<Armario.length; i++){
+
+            databaseReference.child("Inventario").child(Armario[i]).child(Estante).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot objSnaptshot : dataSnapshot.getChildren()) {
+                        Inventario i = objSnaptshot.getValue(Inventario.class);
+                        listInventario.add(i);
+                        arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                        listView.setAdapter(arrayAdapter);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+    }
+
+
 }
