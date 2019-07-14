@@ -71,19 +71,26 @@
     <Spinner
         android:id="@+id/Armario"
         android:layout_width="match_parent"
-        android:layout_height="50sp" />
+        android:layout_height="80sp" />
 
     <Spinner
         android:id="@+id/Estante"
         android:layout_width="match_parent"
-        android:layout_height="50sp" />
+        android:layout_height="80sp" />
+
+    <!--<Button-->
+        <!--android:id="@+id/subir"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Subir" />-->
 
     <Button
+        android:id="@+id/agregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/btn"
-        android:onClick="CrearInventario"
         android:text="@string/agregar"
         android:textColor="@android:color/white" />
+
 
 </LinearLayout>
