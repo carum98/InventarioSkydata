@@ -9,4 +9,7 @@
     <string name="salida">Salida</string>
     <string name="entrada">Entrada</string>
     <string name="agregar_articulo_a_inventario">Agregar articulo a inventario</string>
+    <string name="agregar_a_inventario">Agregar a inventario</string>
+    <string name="listado">Listado</string>
+    <string name="escanear">Escanear</string>
 </resources>

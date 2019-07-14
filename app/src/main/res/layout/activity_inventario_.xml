@@ -1,44 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Inventario_Activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Inventario_Activity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/cantidad">
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="262dp"
+        android:hint="@string/cantidad"
+        app:layout_constraintBottom_toTopOf="@+id/entradaBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/cantidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="number"
             android:paddingTop="15dp"
-            android:importantForAutofill="no"
-            tools:targetApi="o"
-            tools:ignore="LabelFor" />
+            tools:ignore="LabelFor"
+            tools:targetApi="o" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/salida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark"
+    <!--<Button-->
+    <!--android:id="@+id/salida"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@android:color/holo_red_dark"-->
+    <!--android:onClick="salida"-->
+    <!--android:text="@string/salida"-->
+    <!--android:textColor="#FDFDFC"-->
+    <!--tools:layout_editor_absoluteX="208dp"-->
+    <!--tools:layout_editor_absoluteY="79dp" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/entrada"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@android:color/holo_green_dark"-->
+    <!--android:onClick="entrada"-->
+    <!--android:text="@string/entrada"-->
+    <!--tools:layout_editor_absoluteX="80dp"-->
+    <!--tools:layout_editor_absoluteY="79dp" />-->
+
+    <ImageButton
+        android:id="@+id/btnEntrada"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/salida"
+        android:contentDescription="@string/escanear"
         android:onClick="salida"
-        android:text="@string/salida"
-        android:textColor="#FDFDFC" />
+        app:layout_constraintBottom_toBottomOf="@+id/entradaBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/entradaBtn"
+        app:layout_constraintTop_toTopOf="@+id/entradaBtn" />
 
-    <Button
-        android:id="@+id/entrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_dark"
+    <ImageButton
+        android:id="@+id/entradaBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="65dp"
+        android:background="@drawable/entrada"
+        android:contentDescription="@string/escanear"
         android:onClick="entrada"
-        android:text="@string/entrada" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEntrada"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

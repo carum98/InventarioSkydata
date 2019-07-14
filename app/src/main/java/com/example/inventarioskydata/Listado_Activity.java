@@ -29,21 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Listado_Activity extends AppCompatActivity {
-
     ListView listView;
     Inventario Selected;
-
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
-    String [] estantes = {"Estante A", "Estante B", "Estante C", "Estante E", "Estante H", "Estante I"};
+    String [] estantes = {"Estante A", "Estante B", "Estante C", "Estante D", "Estante G","Estante F",  "Estante E", "Estante H", "Estante I"};
     String [] Armario = {"ArmarioA", "ArmarioB", "ArmarioC"};
 
     private List<Inventario> listInventario = new ArrayList<Inventario>();
-    private List<String> listCodigos = new ArrayList<String>();
-
     ArrayAdapter<Inventario> arrayAdapter;
-    ArrayAdapter<String> arrayCodgios;
 
     EditText nomI, cantI, campoI;
     TextView textV;
@@ -65,14 +59,10 @@ public class Listado_Activity extends AppCompatActivity {
             listaInventario();
         }
 
-
         nomI = (EditText) findViewById(R.id.nombre);
         cantI = (EditText) findViewById(R.id.cantidad);
         campoI = (EditText) findViewById(R.id.campo);
         textV = (TextView) findViewById(R.id.id);
-
-//        final Intent intent = new Intent (this,Show_Activity.class);
-
         final Intent intent = new Intent (this,Inventario_Activity.class);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,8 +77,6 @@ public class Listado_Activity extends AppCompatActivity {
                     startActivity(intent);
             }
         });
-
-
     }
 
     private void inicializarFirebase() {
@@ -132,63 +120,38 @@ public class Listado_Activity extends AppCompatActivity {
         }else if (codigo.length() == 9){
             estantes(codigo);
         }else {
-            String armarioId = "Armario" + codigo.charAt(0);
-            String estanteId = "Estante " + codigo.charAt(1);
-
-            DatabaseReference ref = databaseReference.child("Inventario").child(armarioId).child(estanteId);
-            Query idQuery = ref.orderByChild("id").equalTo(codigo);
-
-            idQuery.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                        Inventario i = singleSnapshot.getValue(Inventario.class);
-                        listInventario.add(i);
-
-                        arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
-                        listView.setAdapter(arrayAdapter);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            listCompleto(codigo);
         }
     }
 
+    public void listCompleto(String codigo){
+        String armarioId = "Armario" + codigo.charAt(0);
+        String estanteId = "Estante " + codigo.charAt(1);
 
-    public void listaChild(){
-        listView = (ListView) findViewById(R.id.ListView);
-        DatabaseReference ref = databaseReference.child("Inventario");
-//        Query query = ref.equalTo("ArmarioA");
-        ref.addValueEventListener(new ValueEventListener() {
+        DatabaseReference ref = databaseReference.child("Inventario").child(armarioId).child(estanteId);
+        Query idQuery = ref.orderByChild("id").equalTo(codigo);
+
+        idQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot objSanpshot : dataSnapshot.getChildren()){
-                    String codigos = objSanpshot.getKey();
-                    listCodigos.add(codigos);
+                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                    Inventario i = singleSnapshot.getValue(Inventario.class);
+                    listInventario.add(i);
 
-//                    arrayCodgios = new ArrayAdapter<String>(Listado_Activity.this, android.R.layout.simple_list_item_1, listCodigos);
-//                    listView.setAdapter(arrayCodgios);
+                    arrayAdapter = new ArrayAdapter<Inventario>(Listado_Activity.this, android.R.layout.simple_list_item_1, listInventario);
+                    listView.setAdapter(arrayAdapter);
                 }
-                Toast.makeText(Listado_Activity.this, listCodigos.get(0), Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
     }
 
     public void armarios(String Armario){
         Toast.makeText(this, Armario, Toast.LENGTH_SHORT).show();
-
         for (int i=0; i<estantes.length; i++){
-
             databaseReference.child("Inventario").child(Armario).child(estantes[i]).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -199,7 +162,6 @@ public class Listado_Activity extends AppCompatActivity {
                         listView.setAdapter(arrayAdapter);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -208,13 +170,9 @@ public class Listado_Activity extends AppCompatActivity {
         }
     }
 
-
     private void estantes(String Estante) {
-
         Toast.makeText(this, Estante, Toast.LENGTH_SHORT).show();
-
         for (int i=0; i<Armario.length; i++){
-
             databaseReference.child("Inventario").child(Armario[i]).child(Estante).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -225,14 +183,12 @@ public class Listado_Activity extends AppCompatActivity {
                         listView.setAdapter(arrayAdapter);
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
             });
         }
-
     }
 
 

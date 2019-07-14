@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -55,10 +57,23 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         startActivity(listado);
     }
 
-    public void agregar(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menubar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent agregar = new Intent(this, Agregar_Activity.class);
         startActivity(agregar);
+        return true;
     }
+
+//    public void agregar(View view) {
+//        Intent agregar = new Intent(this, Agregar_Activity.class);
+//        startActivity(agregar);
+//    }
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(this);
