@@ -74,6 +74,7 @@ public class Listado_Activity extends AppCompatActivity {
                     intent.putExtra("id", Selected.getId());
                     intent.putExtra("armario",Selected.getArmario());
                     intent.putExtra("estante", Selected.getEstante());
+                    intent.putExtra("image",Selected.getRutaImage());
                     startActivity(intent);
             }
         });

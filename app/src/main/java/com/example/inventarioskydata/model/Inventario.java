@@ -6,6 +6,20 @@ public class Inventario {
     private int cantidad;
     private String armario;
     private String estante;
+    private String rutaImage;
+
+
+    public Inventario() {
+
+    }
+
+    public String getRutaImage() {
+        return rutaImage;
+    }
+
+    public void setRutaImage(String rutaImage) {
+        this.rutaImage = rutaImage;
+    }
 
     public String getArmario() {
         return armario;
@@ -21,10 +35,6 @@ public class Inventario {
 
     public void setEstante(String estante) {
         this.estante = estante;
-    }
-
-    public Inventario() {
-
     }
 
     public String getId() {

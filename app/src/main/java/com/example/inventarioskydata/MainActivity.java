@@ -89,21 +89,11 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         mScannerView.startCamera();
     }
 
-
     @Override
     public void handleResult(Result result) {
         Intent intent = new Intent(MainActivity.this, Listado_Activity.class);
         String cogigo = result.getText();
         intent.putExtra("codigo", cogigo);
         startActivity(intent);
-
-//        Log.v("HandleResult",result.getText());
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("Resultado del SCAN");
-//        builder.setMessage(result.getText());
-//        AlertDialog alertDialog = builder.create();
-//        alertDialog.show();
-
-//        mScannerView.resumeCameraPreview(this);
     }
 }
